@@ -64,6 +64,7 @@ for i in cat_cols:
 #train[~pd.isnull(train).any(axis=1)]    
 new_train=train.loc[:,pd.isnull(train).sum()<=0] 
 
+
 new_train_2=train.loc[:,pd.isnull(train).sum()>0]
 
 cont_columns=['age','anchoring1','anchoring2','anchoring3','anchoring4','Ranchori','RAN001','RAN002','RAN003',
@@ -72,7 +73,15 @@ cont_columns=['age','anchoring1','anchoring2','anchoring3','anchoring4','Ranchor
 
 cat_data=train.drop(cont_columns, axis=1)
 
-   
+cat_data_full_data=train.loc[:,pd.isnull(train).sum()<=0] 
+
+
+cat_data_with_null_data=train.loc[:,pd.isnull(train).sum()>0]
+
+cat_data_full_data.to_csv("D:/ml_github/cat_data_full_data.csv", index=False)
+cat_data_with_null_data.to_csv("D:/ml_github/cat_data_with_null_data.csv", index=False)
+
+cat_data.to_csv("D:/ml_github/cat_data.csv", index=False)   
 #cat_data=cat_data.apply(pd.to_numeric,errors='coerce')
 
 #cat_data=cat_data.fillna(-999).astype(int)
