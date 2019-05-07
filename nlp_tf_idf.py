@@ -96,3 +96,12 @@ for i in tf_idf:
 nlp_df=pd.DataFrame(D)    
 #bigdata = pd.concat([train, nlp_df], ignore_index=True)
 bigdata = pd.concat([train, nlp_df], axis=1) 
+
+from sklearn.metrics.pairwise import cosine_similarity
+cat_data=pd.read_csv("D:/ml_github/cat_data.csv") 
+cat_data=cat_data.fillna(0) 
+#train_=train.astype(int)
+cos_ = cosine_similarity(cat_data)
+np.fill_diagonal(cos_, -100)
+m=np.argmax(cos_,axis=1)
+x=train.loc[m,'imagineddescribe']
